@@ -8,14 +8,14 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    for person_in_list in people:
-        Person(person_in_list["name"], person_in_list["age"])
+    for person in people:
+        Person(person["name"], person["age"])
 
-    for person_in_list in people:
-        person = Person.people[person_in_list["name"]]
-        if "wife" in person_in_list and person_in_list["wife"]:
-            person.wife = Person.people[person_in_list["wife"]]
-        if "husband" in person_in_list and person_in_list["husband"]:
-            person.husband = Person.people[person_in_list["husband"]]
+    for person in people:
+        person_ = Person.people[person["name"]]
+        if person.get("wife"):
+            person_.wife = Person.people[person["wife"]]
+        if person.get("husband"):
+            person_.husband = Person.people[person["husband"]]
 
     return [Person.people[data["name"]] for data in people]
